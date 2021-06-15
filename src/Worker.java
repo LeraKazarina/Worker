@@ -3,17 +3,17 @@ public class Worker {
     private OnTaskDoneListener callback;
     private OnTaskErrorListener errorCallback;
 
-    public Worker(OnTaskErrorListener errorCallback) {
+    public Worker(OnTaskErrorListener errorCallback, OnTaskDoneListener callback) {
         this.errorCallback = errorCallback;
-    }
-    public Worker(OnTaskDoneListener callback) {
         this.callback = callback;
     }
 
     public void start() {
         for (int i = 1; i < 100; i++) {
             if (i == 33) {
-                errorCallback.OnError("Task " + " is failed");
+                System.out.println("----------------------------------");
+                errorCallback.OnError("Task " + i + " is failed");
+                System.out.println("---------------------------------");
             }
             callback.onDone("Task " + i + " is done");
         }
